@@ -18,64 +18,67 @@
   --animate-fade-in-delay-3: fade-in-delay 0.7s ease-out 0.6s forwards;
   --animate-fade-in-delay-4: fade-in-delay 0.7s ease-out 0.8s forwards;
   --animate-meteor: meteor 5s linear infinite;
+}
 
-  @keyframes float {
-    0%,
-    100% {
-      transform: translateY(0);
-    }
-    50% {
-      transform: translateY(-10px);
-    }
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
   }
-  @keyframes pulse-subtle {
-    0%,
-    100% {
-      opacity: 1;
-    }
-    50% {
-      opacity: 0.8;
-    }
+  50% {
+    transform: translateY(-10px);
   }
-  @keyframes fade-in {
-    from{
-      opacity: 0;
-      transform: translateY(20px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }@keyframes fade-in-delay {
-    from{
-      opacity: 0;
-      transform: translateY(20px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
+}
+@keyframes pulse-subtle {
+  0%,
+  100% {
+    opacity: 1;
   }
-  @keyframes meteor {
-    0% {
-      transform: rotate(215deg) translateX(0);
-      opacity: 1;
-    }
-    70% {
-      opacity: 1;
-    }
-    100% {
-      transform: rotate(215deg) translateX(-500px);
-      opacity: 0;
-    }
+  50% {
+    opacity: 0.8;
   }
-  @keyframes grow {
-    from {
-      transform: scaleX(0);
-    }
-    to {
-      transform: scaleX(1);
-    }
+}
+@keyframes fade-in {
+  from{
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes fade-in-delay {
+  from{
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes grow {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+/* Meteor animation: moves diagonally across the screen while fading out */
+@keyframes meteor {
+  0% {
+    transform: rotate(215deg) translateX(0);
+    opacity: 1;
+  }
+  70% {
+    opacity: 1;
+  }
+  100% {
+    transform: rotate(215deg) translateX(-500px);
+    opacity: 0;
   }
 }
 
@@ -92,31 +95,62 @@
   animation-iteration-count: infinite;
 }
 
+/* Electron circuit animation */
+@keyframes particle-move {
+    0%   { transform: translate(var(--start-x, 0px), var(--start-y, 100px)); opacity: 0; }
+    2%   { opacity: 1; }
+
+    10%  { transform: translate(calc(var(--start-x, 0px) + 25vw), calc(var(--start-y, 100px) + 0vh));   }
+    18%  { transform: translate(calc(var(--start-x, 0px) + 25vw), calc(var(--start-y, 100px) - 20vh));  }
+    26%  { transform: translate(calc(var(--start-x, 0px) + 50vw), calc(var(--start-y, 100px) - 20vh));  }
+    28%  { transform: translate(calc(var(--start-x, 0px) + 51vw), calc(var(--start-y, 100px) - 22vh));  }
+    30%  { transform: translate(calc(var(--start-x, 0px) + 52vw), calc(var(--start-y, 100px) - 20vh));  }
+    38%  { transform: translate(calc(var(--start-x, 0px) + 60vw), calc(var(--start-y, 100px) - 20vh));  }
+    46%  { transform: translate(calc(var(--start-x, 0px) + 60vw), calc(var(--start-y, 100px) + 10vh));  }
+    54%  { transform: translate(calc(var(--start-x, 0px) + 40vw), calc(var(--start-y, 100px) + 10vh));  }
+    62%  { transform: translate(calc(var(--start-x, 0px) + 40vw), calc(var(--start-y, 100px) + 25vh));  }
+    72%  { transform: translate(calc(var(--start-x, 0px) + 75vw), calc(var(--start-y, 100px) + 25vh));  }
+    75%  { transform: translate(calc(var(--start-x, 0px) + 77vw), calc(var(--start-y, 100px) + 23vh));  }
+    77%  { transform: translate(calc(var(--start-x, 0px) + 79vw), calc(var(--start-y, 100px) + 25vh));  }
+    88%  { transform: translate(calc(var(--start-x, 0px) + 100vw), calc(var(--start-y, 100px) + 25vh)); }
+
+    96%  { transform: translate(calc(var(--start-x, 0px) + 100vw), calc(var(--start-y, 100px) + 25vh)); opacity: 1; }
+    100% { transform: translate(calc(var(--start-x, 0px) + 105vw), calc(var(--start-y, 100px) + 25vh)); opacity: 0; }
+}
+
+.particle {
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-radius: 50%;
+  transform: translate(30px, 40px); /* rest at origin */
+  animation: particle-move 6s linear infinite;
+}
+
+
 @layer base {
   :root {
-    --background: 210 40% 98%;
-    --foreground: 222 47% 11%;
+    --background: 210 40% 98%; /* #f8fafc */
+    --foreground: 222 47% 11%; /* #0f172a */
     
-    --card: 210 20% 90%;
-
+    --card: 210 20% 90%; /* #dfe4e9 */
     
-    --primary: 250 47% 60%;
-    --primary-foreground: 210 40% 98%;
+    --primary: 250 47% 60%; /* #7166b8 */
+    --primary-foreground: 210 40% 98%; /* #f8fafc */
     
-    --border: 214 32% 91%;
+    --border: 214 32% 91%; /* #e2e8f0 */
   }
 
   .dark {
-    --background: 222 47% 4%;
-    --foreground: 213 31% 91%;
+    --background: 222 47% 4%; /* #060810 */
+    --foreground: 213 31% 91%; /* #e2e8f0 */
     
-    --card: 222 47% 8%;
-
+    --card: 222 47% 8%; /* #0b1120 */
     
-    --primary: 250 65% 65%;
-    --primary-foreground: 213 31% 91%;
+    --primary: 250 65% 65%; /* #8678e0 */
+    --primary-foreground: 213 31% 91%; /* #e2e8f0 */
     
-    --border: 217 33% 20%;
+    --border: 217 33% 20%; /* #222d44 */
   }
 
   * {

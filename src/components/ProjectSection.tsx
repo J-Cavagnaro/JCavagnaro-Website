@@ -72,18 +72,27 @@ export const ProjectSection = () => {
 
                             <div className="flex justify-between items-center">
                                 <div className="flex space-x-3">
-                                    <a 
-                                    href={project.demoUrl} 
-                                    className="text-foreground/80 hover:text-primary transition-colors duration-300"
-                                    >
-                                        <ExternalLink size={20}/>
-                                    </a>
-                                    <a 
-                                    href={project.githubUrl} 
-                                    className="text-foreground/80 hover:text-primary transition-colors duration-300"
-                                    >
-                                        <Github size={20}/>
-                                    </a>
+                                    {project.demoUrl !== '#' && (
+                                        <a
+                                            href={project.demoUrl}
+                                            className="text-foreground/80 hover:text-primary transition-colors duration-300"
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                        >
+                                            <ExternalLink size={20} />
+                                        </a>
+                                    )}
+
+                                    {project.githubUrl !== '#' && (
+                                        <a
+                                            href={project.githubUrl}
+                                            className="text-foreground/80 hover:text-primary transition-colors duration-300"
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                        >
+                                            <Github size={20} />
+                                        </a>
+                                    )}
                                 </div>
                             </div>
                         </div>
